@@ -1,0 +1,8 @@
+requirements:
+  - ["functional", "mandatory", "A copy of all data generated in the system will be available at the secondary datacenter within 24 hours"]
+  - ["functional", "mandatory", "Data categorized as Tier 1 must have RPO of less than 30 minutes"]
+  - ["functional", "mandatory", "Data categorized as Tier 1 must have RTO of less than 10 minutes"]
+  - ["functional", "optional", "A real-time dashboard showing any failed component in the system must be web accessible"]
+  - ["functional", "mandatory", "Data categorized as Tier 1 must have availability of 99.999%"]
+  - ["nonfunctional", "mandatory", "The system shall be easy to use"]
+  - ["nonfunctional", "optional", "The system shall offer a variety of administrative interfaces"]

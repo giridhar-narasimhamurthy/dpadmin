@@ -1,0 +1,58 @@
+# Runtime & Infrastructure Config (From Tool)
+spec_version: 1
+name: "dpadmin_env"
+type: "space"
+runtime: "fastapi"
+app: "server.app:app"  # Ensure your FastAPI instance is in server/app.py
+port: 8000
+
+# Environment Metadata & Logic (From our Discussion)
+version: "1.0.0"
+description: >
+  Data Protection Administrator simulation based on 'Data Protection' by Preston de Guise.
+  Features proactive (RAID) and reactive (Backup/DR) task tracks.
+
+# REQUIRED: 3 Tasks for the 0.0-1.0 scoring
+tasks:
+  - id: "id_setup_redundancy"
+    name: "Task 1: The Architect (Proactive)"
+    difficulty: "easy"
+    description: "Configure RAID and Redundancy for Tier 1 resources."
+  
+  - id: "id_backup_lifecycle"
+    name: "Task 2: The Optimizer (Lifecycle)"
+    difficulty: "medium"
+    description: "Set snapshot and backup policies to meet RPO."
+  
+  - id: "id_dr_recovery"
+    name: "Task 3: The Resilient Admin (Reactive)"
+    difficulty: "hard"
+    description: "Recover from a simulated failure within the RTO."
+
+# REQUIRED: Typed Schemas for the Validator
+schemas:
+  action:
+    type: "object"
+    required: ["command", "target", "params"]
+    properties:
+      command:
+        type: "string"
+        enum: ["SET_REDUNDANCY", "SET_POLICY", "SET_LEVEL", "EXECUTE_RECOVERY", "SET_TOPOLOGY"]
+      target:
+        type: "string"
+      params:
+        type: "string"
+  
+  observation:
+    type: "object"
+    properties:
+      timestamp: { type: "string" }
+      rpo_gap_min: { type: "integer" }
+      io_latency_ms: { type: "number" }
+      status_code: { type: "integer" }
+      integrity_score: { type: "number" }
+
+tags:
+  - "infrastructure"
+  - "SRE"
+  - "data-protection"

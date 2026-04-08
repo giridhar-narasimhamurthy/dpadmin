@@ -1,0 +1,26 @@
+hosts:
+  - srv-prod-01
+  - srv-db-01
+  - srv-backup-target
+
+apps:
+  - InventorySystem
+  - PostgreSQL_DB
+
+data_storage:
+  - PureStorage_Array_01
+  - DataDomain_Virtual_Edition
+
+network_connections:
+  - [srv-prod-01, srv-db-01]
+  - [srv-db-01, srv-backup-target]
+
+relationships:
+  - [InventorySystem, srv-prod-01, PureStorage_Array_01]
+  - [PostgreSQL_DB, srv-db-01, PureStorage_Array_01]
+
+classification:
+  PostgreSQL_DB: "Tier 1"
+  InventorySystem: "Tier 2"
+  User_Archives: "Tier 3"
+  Financial_Records: "PII/Regulated"
