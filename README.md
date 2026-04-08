@@ -15,6 +15,17 @@ base_path: /web
 
 This agent is an expert Site Reliability Engineer (SRE) designed to manage infrastructure lifecycle, redundancy, and disaster recovery.
 
+## Configuration Variables
+The environment supports 3 tasks:
+1. Proactive Data Protection
+   This task teaches the agent how to pick data storage protection techniques such as RAID levels. In order to run this task, set environment variable DPADMIN_TASK: "id_setup_redundancy" .
+   
+2. Reactive Data Protection
+   This task teaches the agent how to pick data protection techniques such as snapshots, backups. In order to run this task, set environment variable DPADMIN_TASK: "id_backup_lifecyle" .
+   
+3. Disaster Recovery
+   This task teaches the agent how to pick data recovery techniques such as point-in-time restore. In order to run this task, set environment variable DPADMIN_TASK: "id_dr_recovery" .
+   
 ## Environment Description
 The **Dpadmin Environment** is a simulated infrastructure management platform. It provides an API-driven interface to manage:
 * **Host Assets:** `srv-prod-01`, `srv-db-01`, `srv-backup-target`
