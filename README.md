@@ -5,6 +5,9 @@ colorFrom: blue
 colorTo: green
 sdk: docker
 app_port: 8000
+variables:
+  API_BASE_URL: "https://router.huggingface.co/v1"
+  MODEL_NAME: "Qwen/Qwen2.5-72B-Instruct"
 base_path: /web
 ---
 
