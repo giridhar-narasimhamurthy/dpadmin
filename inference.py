@@ -17,8 +17,8 @@ from client import DpadminEnv
 # 1. ENVIRONMENT CONFIGURATION
 # =========================================================================
 API_KEY = os.getenv("HF_TOKEN")
-API_BASE_URL = os.getenv("API_BASE_URL")
-MODEL_NAME = os.getenv("MODEL_NAME")
+API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
+MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-72B-Instruct")
 
 # Fallback to local development
 if not API_BASE_URL:
