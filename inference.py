@@ -17,18 +17,18 @@ from client import DpadminEnv
 # 1. ENVIRONMENT CONFIGURATION
 # =========================================================================
 API_KEY = os.getenv("HF_TOKEN")
-if API_KEY:
-    # CLOUD SETTINGS (For Submission)
-    os.environ["API_BASE_URL"] = "https://router.huggingface.co/v1"
-    os.environ["MODEL_NAME"] = "Qwen/Qwen2.5-72B-Instruct" 
-else:
-    # LOCAL SETTINGS
-    os.environ["API_BASE_URL"] = "http://localhost:11434/v1/"
-    os.environ["MODEL_NAME"] = "qwen2.5:7b"
-    API_KEY = "ollama"
-
 API_BASE_URL = os.getenv("API_BASE_URL")
 MODEL_NAME = os.getenv("MODEL_NAME")
+
+# Fallback to local development
+if not API_BASE_URL:
+    API_BASE_URL = "http://localhost:11434/v1/"
+    MODEL_NAME = "qwen2.5:7b"
+    API_KEY = "ollama"
+    print("Using Local Ollama")
+else:
+    print(f"Using Cloud Model: {MODEL_NAME}")
+
 TASK_NAME = os.getenv("DPADMIN_TASK", "id_backup_lifecycle")
 BENCHMARK = "dpadmin_env"
 SUCCESS_SCORE_THRESHOLD = 0.7
