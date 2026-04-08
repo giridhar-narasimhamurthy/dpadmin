@@ -32,6 +32,7 @@ else:
 TASK_NAME = os.getenv("DPADMIN_TASK", "id_backup_lifecycle")
 BENCHMARK = "dpadmin_env"
 SUCCESS_SCORE_THRESHOLD = 0.7
+ENV_URL = os.getenv("ENV_URL", "https://giridhar-brahmisystems-dpadmin.hf.space")
 
 # =========================================================================
 # 2. DATA LOADING & TARGET PARSING
@@ -222,7 +223,7 @@ def get_action_from_llm(client: OpenAI, observation, history: List[str], target:
 async def main() -> None:
     client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
     
-    async with DpadminEnv(base_url="http://localhost:8000") as env:
+    async with DpadminEnv(base_url=ENV_URL) as env:
         all_rewards = []
         global_step = 0
         log_start(TASK_NAME, BENCHMARK, MODEL_NAME)
