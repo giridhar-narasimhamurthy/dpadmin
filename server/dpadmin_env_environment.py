@@ -106,7 +106,9 @@ class DpadminEnvironment(Environment):
         # Calculate global metrics
         # If any resource is OFFLINE, status_code is 0 (System Degraded/Down)
         global_status = 1 if all(s["status"] == "ONLINE" for s in all_states) else 0
-    
+        # Map Local Statuses
+        local_health = {name: s["status"] for name, s in self.telemetry.resource_states.items()}
+
         # Average integrity across all apps
         avg_integrity = sum(1.0 if s["integrity_verified"] else 0.0 for s in all_states) / len(all_states)
     
@@ -122,6 +124,7 @@ class DpadminEnvironment(Environment):
             io_latency_ms=round(avg_latency, 2),
             status_code=global_status,
             integrity_score=round(avg_integrity, 2),
+            resource_health=local_health,
             done=False,
             reward=0.0
         )
@@ -166,20 +169,44 @@ class DpadminEnvironment(Environment):
         # 6. Generate Observation for the target of the action
         obs_data = self.telemetry.generate_observation_for_agent(action.target)
 
-        return DpadminObservation(
-            timestamp=str(self.telemetry.simulation_time),
-            rpo_gap_min=obs_data["rpo_gap_min"],
-            io_latency_ms=obs_data["latency"],
-            status_code=obs_data["status_code"],
-            integrity_score=obs_data["integrity"],
-            done=done,
-            reward=step_reward,
-            metadata={
-                "task": self.current_task_id,
-                "step": self._state.step_count,
-                "target_resource": action.target
-            }
-        )
+        try:
+            health_status = self.telemetry.resource_states[action.target].get("status", "UNKNOWN")
+
+            ret_obs = DpadminObservation(
+                timestamp=str(self.telemetry.simulation_time),
+                rpo_gap_min=obs_data["rpo_gap_min"],
+                io_latency_ms=obs_data["latency"],
+                status_code=obs_data["status_code"],
+                integrity_score=obs_data["integrity"],
+                resource_health={action.target: health_status},
+                done=done,
+                reward=step_reward,
+                metadata={
+                    "task": self.current_task_id,
+                    "step": self._state.step_count,
+                    "target_resource": action.target
+                }
+            )
+        except Exception as e:
+            health_status = "ERROR"
+            ret_obs = DpadminObservation(
+                timestamp=str(self.telemetry.simulation_time),
+                rpo_gap_min=obs_data["rpo_gap_min"],
+                io_latency_ms=obs_data["latency"],
+                status_code=obs_data["status_code"],
+                integrity_score=obs_data["integrity"],
+                resource_health={action.target: health_status},
+                done=done,
+                reward=step_reward,
+                metadata={
+                    "task": self.current_task_id,
+                    "step": self._state.step_count,
+                    "target_resource": action.target
+                }
+            )
+            print(f"step error: {e}")
+
+        return ret_obs 
 
     @property
     def state(self) -> State:

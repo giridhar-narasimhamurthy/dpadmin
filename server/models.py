@@ -62,9 +62,13 @@ class DpadminObservation(Observation):
         default=1.0, 
         description="Data verification status: 1.0 is verified/clean, < 1.0 indicates corruption/ransomware."
     )
-    
+    resource_health: Dict[str, str] = Field(
+        default_factory=dict, 
+        description="Mapping of resource name to its specific status (ONLINE/OFFLINE)"
+    )
+ 
     # Required by OpenEnv Base Observation
-    done: bool = Field(default=False)
-    reward: float = Field(default=0.0)
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    #done: bool = Field(default=False)
+    #reward: float = Field(default=0.0)
+    #metadata: Dict[str, Any] = Field(default_factory=dict)
 

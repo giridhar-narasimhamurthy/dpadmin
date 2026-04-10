@@ -37,7 +37,7 @@ schemas:
     properties:
       command:
         type: "string"
-        enum: ["SET_REDUNDANCY", "SET_POLICY", "SET_LEVEL", "EXECUTE_RECOVERY", "SET_TOPOLOGY"]
+        enum: ["SET_REDUNDANCY", "SET_POLICY", "SET_LEVEL", "EXECUTE_RECOVERY", "SET_TOPOLOGY", "SET_RETENTION"]
       target:
         type: "string"
       params:
@@ -51,6 +51,7 @@ schemas:
       io_latency_ms: { type: "number" }
       status_code: { type: "integer" }
       integrity_score: { type: "number" }
+      resource_health: { type: "object" }
 
 tags:
   - "infrastructure"

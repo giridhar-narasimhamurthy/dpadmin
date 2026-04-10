@@ -6,6 +6,7 @@ hosts:
 apps:
   - InventorySystem
   - PostgreSQL_DB
+  - Backup_Management_Service
 
 data_storage:
   - PureStorage_Array_01
@@ -18,6 +19,7 @@ network_connections:
 relationships:
   - [InventorySystem, srv-prod-01, PureStorage_Array_01]
   - [PostgreSQL_DB, srv-db-01, PureStorage_Array_01]
+  - [Backup_Management_Service, srv-backup-target, DataDomain_Virtual_Edition]
 
 classification:
   PostgreSQL_DB: "Tier 1"

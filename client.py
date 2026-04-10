@@ -79,12 +79,14 @@ class DpadminEnv(
         Parse the server's telemetry response into a DpadminObservation.
         """
         obs_data = payload.get("observation", {})
+        resource_health = obs_data.get("resource_health", {})
         observation = DpadminObservation(
             timestamp=obs_data.get("timestamp", ""),
             rpo_gap_min=obs_data.get("rpo_gap_min", 0),
             io_latency_ms=obs_data.get("io_latency_ms", 0.0),
             status_code=obs_data.get("status_code", 1),
             integrity_score=obs_data.get("integrity_score", 1.0),
+            resource_health=resource_health,
             done=payload.get("done", False),
             reward=payload.get("reward", 0.0),
             metadata=payload.get("metadata", {}),

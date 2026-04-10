@@ -1,5 +1,6 @@
 #
-#
+# Copyright (c) 2026, Giridhar Narasimhamurthy. All rights reserved.
+# Use is subject to license terms.
 #
 
 from client import DpadminEnv

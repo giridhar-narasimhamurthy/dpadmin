@@ -1,5 +1,6 @@
 #
-#
+# Copyright (c) 2026, Giridhar Narasimhamurthy. All rights reserved.
+# Use is subject to license terms.
 #
 
 from datetime import datetime, timedelta
@@ -16,7 +17,8 @@ class ActiveTelemetry:
         
         # Initialize state for all apps and storage from SystemMap
         # This ensures we have a dynamic record for every static asset
-        all_resources = set(system_map.apps + system_map.data_storage)
+        all_resources = set(system_map.apps + system_map.data_storage +
+                            system_map.hosts)
         for res in all_resources:
             self.resource_states[res] = {
                 "status": "ONLINE",
