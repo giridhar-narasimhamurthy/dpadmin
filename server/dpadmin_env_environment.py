@@ -89,9 +89,10 @@ class DpadminEnvironment(Environment):
                 state["status"] = "OFFLINE"
                 state["integrity_verified"] = False
                 state["io_latency_ms"] = 0.0
-                print(f"--- [DR SIMULATION] Critical Resource '{target_app}' FAILURE detected ---")
+                #print(f"--- [DR SIMULATION] Critical Resource '{target_app}' FAILURE detected ---")
             else:
-                print("Warning: No Tier 1 apps found to simulate DR failure.")
+                #print("Warning: No Tier 1 apps found to simulate DR failure.")
+                pass
 
         # 3. Global Infrastructure Observation
         # Instead of one app, we generate a summary observation
@@ -204,7 +205,7 @@ class DpadminEnvironment(Environment):
                     "target_resource": action.target
                 }
             )
-            print(f"step error: {e}")
+            #print(f"step error: {e}")
 
         return ret_obs 
 

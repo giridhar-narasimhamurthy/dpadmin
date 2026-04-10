@@ -81,7 +81,7 @@ def get_all_targets():
         # Clean up any potential non-string artifacts
         return [str(t) for t in targets if t]
     except Exception as e:
-        print(f"[DEBUG] YAML Parse Error: {e}")
+        #print(f"[DEBUG] YAML Parse Error: {e}")
         return []
 
 VALID_TARGETS = get_all_targets()
@@ -300,7 +300,7 @@ async def do_task(client, current_task) -> None:
             success = final_score >= SUCCESS_SCORE_THRESHOLD
 
         except Exception as e:
-            print(f"[ERROR] {e}")
+            #print(f"[ERROR] {e}")
             success, final_score = False, 0.0
         
         finally:

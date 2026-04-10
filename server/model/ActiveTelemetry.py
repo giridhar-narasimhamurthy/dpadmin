@@ -98,7 +98,8 @@ class ActiveTelemetry:
             elif cmd == "SET_RETENTION":
                 state["retention_days"] = int(params)
         else:
-            print(f"Warning: Action target '{raw_target}' could not be mapped to a managed App.")
+            #print(f"Warning: Action target '{raw_target}' could not be mapped to a managed App.")
+            pass
 
     def generate_observation_for_agent(self, resource_id: str) -> Dict[str, Any]:
         """
