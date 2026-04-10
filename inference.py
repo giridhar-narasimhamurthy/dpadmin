@@ -31,7 +31,8 @@ if not API_KEY:
     ENV_URL = "http://localhost:8000"
     print("Using Local Ollama")
 else:
-    print(f"Using Cloud Model: {MODEL_NAME}")
+    # print(f"Using Cloud Model: {MODEL_NAME}")
+    pass
 
 BENCHMARK = "dpadmin_env"
 SUCCESS_SCORE_THRESHOLD = 0.4
