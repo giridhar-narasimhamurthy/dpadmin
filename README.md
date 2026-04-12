@@ -1,15 +1,15 @@
-\---
+---
 
 title: SRE Agent - Dpadmin (Data Protection Administrator)
 emoji: 🛠️
 colorFrom: blue
 colorTo: green
 sdk: docker
-app\_port: 8000
+app_port: 8000
 variables:
-API\_BASE\_URL: "https://router.huggingface.co/v1"
-MODEL\_NAME: "Qwen/Qwen2.5-72B-Instruct"
-base\_path: /web
+API_BASE_URL: "https://router.huggingface.co/v1"
+MODEL_NAME: "Qwen/Qwen2.5-72B-Instruct"
+base_path: /web
 ---
 
 # SRE Autonomous Agent: Dpadmin Environment
