@@ -408,7 +408,7 @@ async def do_task(client, current_task) -> None:
             # Calculate metrics for the final report
             max_rewards = global_step * get_max_rewards_perstep(current_task)
             final_score = sum(all_rewards) / max_rewards if max_rewards else 0.0
-            final_score = min(max(final_score, 0.0), 1.0)  # clamp to [0, 1]
+            final_score = min(max(final_score, 0.001), 0.999)  # clamp to [0, 1]
             success = final_score >= SUCCESS_SCORE_THRESHOLD
 
         except Exception as e:
