@@ -1,0 +1,19 @@
+cat <<EOF > .gitignore
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+
+# Vim/Editors
+*.un~
+*.swp
+*.swo
+*.bak
+
+# Logs and Data
+inference_logs.txt
+.DS_Store
+EOF

@@ -4,5 +4,7 @@ requirements:
   - ["functional", "mandatory", "Data categorized as Tier 1 must have RTO of less than 10 minutes"]
   - ["functional", "optional", "A real-time dashboard showing any failed component in the system must be web accessible"]
   - ["functional", "mandatory", "Data categorized as Tier 1 must have availability of 99.999%"]
+  - ["functional", "mandatory", "All financial records must comply with SOX regulations with a retention period of 7 years"]
+  - ["functional", "mandatory", "All application logs must be retained for audit for a period of 1 year"]
   - ["nonfunctional", "mandatory", "The system shall be easy to use"]
   - ["nonfunctional", "optional", "The system shall offer a variety of administrative interfaces"]

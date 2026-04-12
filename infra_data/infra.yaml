@@ -1,16 +1,21 @@
 hosts:
-  - srv-prod-01
-  - srv-db-01
-  - srv-backup-target
+  srv-prod-01:
+    total_capacity_gb: 2000
+  srv-db-01:
+    total_capacity_gb: 5000
+  srv-backup-target:
+    total_capacity_gb: 8000
 
 apps:
-  - InventorySystem
-  - PostgreSQL_DB
-  - Backup_Management_Service
+  InventorySystem:
+    daily_change_percent: 2.5
+  PostgreSQL_DB:
+    daily_change_percent: 5.0
+  Backup_Management_Service: {}
 
 data_storage:
-  - PureStorage_Array_01
-  - DataDomain_Virtual_Edition
+  PureStorage_Array_01: {}
+  DataDomain_Virtual_Edition: {}
 
 network_connections:
   - [srv-prod-01, srv-db-01]

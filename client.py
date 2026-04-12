@@ -17,9 +17,8 @@ try:
 except ImportError:
     from models import DpadminAction, DpadminObservation
 
-class DpadminEnv(
-    EnvClient[DpadminAction, DpadminObservation, State]
-):
+
+class DpadminEnv(EnvClient[DpadminAction, DpadminObservation, State]):
     """
     Client for the Dpadmin Env Environment.
 
@@ -49,15 +48,13 @@ class DpadminEnv(
     def _step_payload(self, action: DpadminAction) -> Dict:
         """
         Convert DpadminAction to JSON payload for step message.
+        Convert DpadminAction (command, target, params) to JSON for the wire.
 
         Args:
             action: DpadminAction instance
 
         Returns:
             Dictionary representation suitable for JSON encoding
-        """
-        """
-        Convert DpadminAction (command, target, params) to JSON for the wire.
         """
         return {
             "command": action.command,
@@ -68,15 +65,13 @@ class DpadminEnv(
     def _parse_result(self, payload: Dict) -> StepResult[DpadminObservation]:
         """
         Parse server response into StepResult[DpadminObservation].
+        Parse the server's telemetry response into a DpadminObservation.
 
         Args:
             payload: JSON response data from server
 
         Returns:
             StepResult with DpadminObservation
-        """
-        """
-        Parse the server's telemetry response into a DpadminObservation.
         """
         obs_data = payload.get("observation", {})
         resource_health = obs_data.get("resource_health", {})
@@ -101,6 +96,7 @@ class DpadminEnv(
     def _parse_state(self, payload: Dict) -> State:
         """
         Parse server response into State object.
+        Parse server response into the OpenEnv State object.
 
         Args:
             payload: JSON response from state request
@@ -108,12 +104,9 @@ class DpadminEnv(
         Returns:
             State object with episode_id and step_count
         """
-        """
-        Parse server response into the OpenEnv State object.
-        """
         return State(
             episode_id=payload.get("episode_id"),
             step_count=payload.get("step_count", 0),
             # You can optionally include telemetry in metadata here for debugging
-            metadata=payload.get("metadata", {}) 
+            metadata=payload.get("metadata", {}),
         )

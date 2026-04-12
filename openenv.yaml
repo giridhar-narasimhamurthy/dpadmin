@@ -29,6 +29,11 @@ tasks:
     difficulty: "hard"
     description: "Recover from a simulated failure within the RTO."
 
+  - id: "id_setup_retention"
+    name: "Task 4: The Resilient Admin (Reactive)"
+    difficulty: "hard"
+    description: "Configure a policy to retain backups created."
+
 # REQUIRED: Typed Schemas for the Validator
 schemas:
   action:
