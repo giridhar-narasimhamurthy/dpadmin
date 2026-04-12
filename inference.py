@@ -413,7 +413,7 @@ async def do_task(client, current_task) -> None:
 
         except Exception as e:
             #print(f"[ERROR] {e}")
-            success, final_score = False, 0.0
+            success, final_score = False, 0.001
 
         finally:
             log_end(
